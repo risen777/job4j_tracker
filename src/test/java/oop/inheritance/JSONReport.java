@@ -5,6 +5,7 @@ package oop.inheritance;
  */
 public class JSONReport extends TextReport {
 
+    @Override
     public String generate(String name, String body) {
         return "{"
                 + "\n"
@@ -12,7 +13,7 @@ public class JSONReport extends TextReport {
                 + ","
                 + "\n"
                 + "body: " + body
-                + "\n"+"}";
+                + "\n" + "}";
 
     }
 }
