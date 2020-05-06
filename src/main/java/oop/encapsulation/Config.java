@@ -1,4 +1,4 @@
-package oop.inheritance;
+package oop.encapsulation;
 
 /**
  * Created by Sergey
