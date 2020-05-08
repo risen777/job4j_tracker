@@ -17,13 +17,11 @@ public class Library {
         books[2] = harryPotter;
         books[3] = cleanCode;
 
-
+        Book bookTemp = books[0];
+        books[0] = books[3];
+        books[3] = bookTemp;
         for (int i = 0; i < books.length; i++) {
-            Book bookTemp = books[0];
-            books[0] = books[3];
-
             Book bk = books[i];
-            books[3] = bookTemp;
             System.out.println(bk.getName() + " - " + bk.getCountOfPage());
         }
         System.out.println("------------");
