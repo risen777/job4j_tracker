@@ -1,7 +1,6 @@
 package oop.encapsulation.tracker;
 
 import java.util.Arrays;
-import java.util.Objects;
 import java.util.Random;
 
 /**
@@ -45,27 +44,8 @@ public class Tracker {
 
 
     /**
-     * Поиск по id
-     * @param id
-     * @return найденная item заявка
-     */
-    public Item findById(String id) {
-
-        Item rsl = null;
-        for (int index = 0; index < items.length; index++) {
-            Item item = items[index];
-            if (item.getId().equals(id)) {
-                rsl = item;
-                break;
-            }
-        }
-        return rsl;
-
-    }
-
-
-    /**
      * Поиск всех элементов массива без null
+     *
      * @return массив без null
      */
     public Item[] findAll() {
@@ -77,6 +57,7 @@ public class Tracker {
 
     /**
      * Поиск по имени
+     *
      * @param key
      * @return массив значений найденный по имени
      */
@@ -91,6 +72,41 @@ public class Tracker {
             }
         }
         rsl = Arrays.copyOf(items, size);
+        return rsl;
+    }
+
+    /**
+     * Замена заявки
+     *
+     * @param id
+     * @param item
+     */
+    public void replace(String id, Item item) {
+        int index = indexOf(id);
+        items[index].setName(item.getName());
+    }
+
+    /**
+     * Поиск по id
+     *
+     * @param id
+     * @return найденная item заявка
+     */
+    public Item findById(String id) {
+        // Находим индекс
+        int index = indexOf(id);
+        // Если индекс найден возвращаем item, иначе null
+        return index != -1 ? items[index] : null;
+    }
+
+    private int indexOf(String id) {
+        int rsl = -1;
+        for (int index = 0; index < position; index++) {
+            if (items[index].getId().equals(id)) {
+                rsl = index;
+                break;
+            }
+        }
         return rsl;
     }
 
