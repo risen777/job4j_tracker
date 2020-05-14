@@ -2,6 +2,7 @@ package oop.encapsulation.tracker;
 
 import org.junit.Test;
 
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
@@ -66,5 +67,15 @@ public class TrackerTest {
 
     }
 
+
+    @Test
+    public void whenDelete() {
+        Tracker tracker = new Tracker();
+        Item bug = new Item("Bug");
+        tracker.add(bug);
+        String id = bug.getId();
+        tracker.delete(id);
+        assertThat(tracker.findById(id), is(nullValue()));
+    }
 
 }

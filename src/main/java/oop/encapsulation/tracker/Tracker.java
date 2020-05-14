@@ -107,4 +107,20 @@ public class Tracker {
         return rsl;
     }
 
+    /**
+     * Удаление заявки по id
+     *
+     * @param id
+     */
+    public void delete(String id) {
+        int index = indexOf(id);
+        int distPos = index;
+        int startPos = index + 1;
+        int size = position - index;
+        Item[] rsl = new Item[size];
+        items[position - 1] = null;
+        position--;
+        System.arraycopy(items, startPos, rsl, distPos, size);
+
+    }
 }
