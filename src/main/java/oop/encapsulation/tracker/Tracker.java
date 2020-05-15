@@ -60,15 +60,15 @@ public class Tracker {
      * @return массив значений найденный по имени
      */
     public Item[] findByName(String key) {
-
         Item[] rsl = new Item[position];
+        int size = 0;
         for (int index = 0; index < position; index++) {
             if (items[index].getName().equals(key)) {
+                rsl[index] = items[index];
                 size++;
             }
-
         }
-        return Arrays.copyOf(items, size);
+        return Arrays.copyOf(rsl, size);
     }
 
     /**
@@ -79,9 +79,12 @@ public class Tracker {
      */
     public boolean replace(String id, Item item) {
         int index = indexOf(id);
-        item.setId(id);
-        items[index] = item;
-        return true;
+        boolean rsl = index != -1;
+        if (rsl) {
+            item.setId(id);
+            items[index] = item;
+        }
+        return rsl;
     }
 
     /**
@@ -98,14 +101,14 @@ public class Tracker {
     }
 
     private int indexOf(String id) {
-        int rsl = -1;
+        int rez = -1;
         for (int index = 0; index < position; index++) {
             if (items[index].getId().equals(id)) {
-                rsl = index;
+                rez = index;
                 break;
             }
         }
-        return rsl;
+        return rez;
     }
 
     /**
@@ -115,13 +118,16 @@ public class Tracker {
      */
     public boolean delete(String id) {
         int index = indexOf(id);
-        int distPos = index;
-        int startPos = index + 1;
-        size = position - index;
-        Item[] rsl = new Item[size];
-        items[position - 1] = null;
-        position--;
-        System.arraycopy(items, startPos, rsl, distPos, size);
-        return true;
+        boolean rsl = index != -1;
+        if (rsl) {
+            int distPos = index;
+            int startPos = index + 1;
+            size = position - index;
+            Item[] newItems = new Item[size];
+            items[position - 1] = null;
+            position--;
+            System.arraycopy(items, startPos, newItems, distPos, size);
+        }
+        return rsl;
     }
 }
