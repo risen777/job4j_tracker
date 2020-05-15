@@ -63,9 +63,9 @@ public class Tracker {
 
         Item[] rsl = new Item[position];
         for (int index = 0; index < position; index++) {
-                if (items[index].getName().equals(key)) {
-                    size++;
-                }
+            if (items[index].getName().equals(key)) {
+                size++;
+            }
 
         }
         return Arrays.copyOf(items, size);
@@ -77,9 +77,11 @@ public class Tracker {
      * @param id
      * @param item
      */
-    public void replace(String id, Item item) {
+    public boolean replace(String id, Item item) {
         int index = indexOf(id);
-        items[index].setName(item.getName());
+        item.setId(id);
+        items[index] = item;
+        return true;
     }
 
     /**
@@ -111,7 +113,7 @@ public class Tracker {
      *
      * @param id
      */
-    public void delete(String id) {
+    public boolean delete(String id) {
         int index = indexOf(id);
         int distPos = index;
         int startPos = index + 1;
@@ -120,6 +122,6 @@ public class Tracker {
         items[position - 1] = null;
         position--;
         System.arraycopy(items, startPos, rsl, distPos, size);
-
+        return true;
     }
 }
