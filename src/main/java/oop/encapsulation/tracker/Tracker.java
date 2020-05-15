@@ -68,8 +68,7 @@ public class Tracker {
                 }
 
         }
-        rsl = Arrays.copyOf(items, size);
-        return rsl;
+        return Arrays.copyOf(items, size);
     }
 
     /**
@@ -116,7 +115,7 @@ public class Tracker {
         int index = indexOf(id);
         int distPos = index;
         int startPos = index + 1;
-        int size = position - index;
+        size = position - index;
         Item[] rsl = new Item[size];
         items[position - 1] = null;
         position--;
