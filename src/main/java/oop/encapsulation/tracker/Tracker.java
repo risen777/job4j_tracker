@@ -8,8 +8,6 @@ import java.util.Random;
  */
 public class Tracker {
 
-    private int ids = 1;
-    private int size = 0;
     /**
      * Массив для хранения заявок.
      */
@@ -122,7 +120,7 @@ public class Tracker {
         if (rsl) {
             int distPos = index;
             int startPos = index + 1;
-            size = position - index;
+            int size = position - index;
             Item[] newItems = new Item[size];
             items[position - 1] = null;
             position--;
