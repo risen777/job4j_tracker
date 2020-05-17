@@ -121,10 +121,10 @@ public class Tracker {
             int distPos = index;
             int startPos = index + 1;
             int size = position - index;
-            Item[] newItems = new Item[size];
+            System.arraycopy(items, startPos, items, distPos, size);
             items[position - 1] = null;
             position--;
-            System.arraycopy(items, startPos, newItems, distPos, size);
+
         }
         return rsl;
     }
