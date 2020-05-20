@@ -82,14 +82,11 @@ public class TrackerTest {
     public void whenReplaceIdNoTime() {
         Tracker tracker = new Tracker();
         Item bug = new Item("Bug");
-        tracker.add(bug);
         String id = "123";
+        tracker.add(bug).setId(id);
         Item bugWithDesc = new Item("Bug with description");
         tracker.replace(id, bugWithDesc);
         assertThat(tracker.findById(id).getName(), is("Bug with description"));
-        Item bugWithDesc2 = new Item("Bug with description2");
-        tracker.replace(id, bugWithDesc2);
-        assertThat(tracker.findById(id).getName(), is("Bug with description2"));
 
     }
 }
