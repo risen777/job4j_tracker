@@ -17,26 +17,34 @@ public class Matches {
         System.out.println("3 - забрать четыре спички");
         System.out.println("0 - выход");
         System.out.print("Введите цифру, чтобы начать игру: ");
+        int i = 0;
         while (run) {
-            System.out.println(value+ " - осталось спичек");
+            System.out.println(value + " - осталось спичек");
             Scanner input = new Scanner(System.in);
             int select = Integer.valueOf(input.nextLine());
             if (select == 1) {
                 System.out.println("Игрок выбрал 1");
                 value = value - 1;
+                i++;
             } else if (select == 2) {
                 System.out.println("Игрок выбрал 2");
                 value = value - 2;
+                i++;
             } else if (select == 3) {
                 System.out.println("Игрок выбрал 3");
                 value = value - 3;
-            } else {
+                i++;
+            }
+            else {
                 System.out.println("Введена неправильная команда");
             }
             System.out.println();
-            if (value < 1) {
-                System.out.println("Вы проиграли");
+            if (value <= 1 && i % 2 != 0) {
+                System.out.println("Первый игрок победил");
                 run = false;
+            }else if (value <= 1 && i % 2 == 0){
+                    System.out.println("Второй игрок победил");
+                    run = false;
             }
         }
     }
