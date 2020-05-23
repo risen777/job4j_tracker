@@ -46,7 +46,6 @@ public class StartUI {
             } else if (select == 5) {
                 System.out.print("Enter name: ");
                 String name = scanner.nextLine();
-                tracker.findByName(name);
                 Item[] items = tracker.findByName(name);
                 for (int i = 0; i < items.length; i++) {
                     System.out.println(i + ".Имя: " + items[i].getName() + " id: " + items[i].getId());
@@ -59,14 +58,13 @@ public class StartUI {
     }
 
     private void showMenu() {
-        System.out.println("\n0. Add new Item\n" +
-                "1. Show all items\n" +
-                "2. Edit item\n" +
-                "3. Delete item\n" +
-                "4. Find item by Id\n" +
-                "5. Find items by name\n" +
-                "6. Exit Program\n");
-
+        System.out.println("0. Add new Item");
+        System.out.println("1. Show all items");
+        System.out.println("2. Edit item");
+        System.out.println("3. Delete item");
+        System.out.println("4. Find item by Id");
+        System.out.println("5. Find items by name");
+        System.out.println("6. Exit Program");
     }
 
 
