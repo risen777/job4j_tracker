@@ -52,8 +52,11 @@ public class StartUI {
             } else if (select == 4) {
                 System.out.print("Enter id: ");
                 String id = scanner.nextLine();
-                System.out.println("По id : " + id + " найдено имя: " + tracker.findById(id).getName());
-                tracker.findById(id);
+                if (tracker.findById(id) == null) {
+                    System.out.println("Id не найден по запросу: " + id);
+                } else {
+                    System.out.println("По id : " + id + " найдено имя: " + tracker.findById(id).getName());
+                }
             } else if (select == 5) {
                 System.out.print("Enter name: ");
                 String name = scanner.nextLine();
