@@ -5,7 +5,7 @@ package oop;
  *
  * @author shumov
  */
-public class Student {
+public class Student extends College {
 
     /**
      * @param lyrics
