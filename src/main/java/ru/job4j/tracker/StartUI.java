@@ -52,18 +52,24 @@ public class StartUI {
             } else if (select == 4) {
                 System.out.print("Enter id: ");
                 String id = scanner.nextLine();
-                if (tracker.findById(id) == null) {
-                    System.out.println("Id не найден по запросу: " + id);
+                Item item = tracker.findById(id);
+                if (item == null) {
+                    System.out.println(String.format("Заявка не найдена по id: '%s'",id));
                 } else {
-                    System.out.println("По id : " + id + " найдено имя: " + tracker.findById(id).getName());
+                    System.out.println("По id : " + id + " найдено имя: " + item.getName());
                 }
             } else if (select == 5) {
                 System.out.print("Enter name: ");
                 String name = scanner.nextLine();
                 Item[] items = tracker.findByName(name);
-                for (int i = 0; i < items.length; i++) {
-                    System.out.println(i + ".Имя: " + items[i].getName() + " id: " + items[i].getId());
+                if (items.length > 0) {
+                    for (int i = 0; i < items.length; i++) {
+                        System.out.println(i + ".Имя: " + items[i].getName() + " id: " + items[i].getId());
+                    }
+                } else {
+                    System.out.println(String.format("Заявки не найдены по имени: '%s' ",name));
                 }
+
             } else if (select == 6) {
                 System.out.println("=== Exit Program ====");
                 run = false;
