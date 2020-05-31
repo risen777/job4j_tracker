@@ -62,7 +62,7 @@ public class StartUI {
         System.out.println("=== Show all items ====");
         Item[] items = tracker.findAll();
         for (int i = 0; i < items.length; i++) {
-            System.out.println(i + ".Имя: " + items[i].getName() + " id: " + items[i].getId());
+            System.out.println(String.format("%d. Имя: '%s' id:  '%s'", i, items[i].getName(), items[i].getId()));
         }
     }
 
@@ -107,7 +107,7 @@ public class StartUI {
         Item[] items = tracker.findByName(name);
         if (items.length > 0) {
             for (int i = 0; i < items.length; i++) {
-                System.out.println(i + ".Имя: " + items[i].getName() + " id: " + items[i].getId());
+                System.out.println(String.format("%d. Имя: '%s' id:  '%s'", i, items[i].getName(), items[i].getId()));
             }
         } else {
             System.out.println(String.format("Заявки не найдены по имени: '%s' ", name));
