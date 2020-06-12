@@ -15,6 +15,22 @@ public class StartUITest {
 
 
     @Test
+    public void whenExit() {
+        Output out = new StubOutput();
+        Input in = new StubInput(
+                new String[] {"0"}
+        );
+        Tracker tracker = new Tracker();
+        UserAction[] actions = {
+                new ExitAction(out)
+        };
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(out.toString(), is(
+                        "Exit" + System.lineSeparator()
+        ));
+    }
+
+    @Test
     public void whenCreateItem() {
         Input in = new StubInput(
                 new String[]{"0", "Item name", "1"}
