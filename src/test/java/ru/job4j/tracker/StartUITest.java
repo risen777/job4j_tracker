@@ -42,6 +42,9 @@ public class StartUITest {
                 new ExitAction(out)
         };
         new StartUI(out).init(in, tracker, actions);
+        assertThat(out.toString(), is(
+                "=== Create a new Item ====\r\nExit\r\n"
+        ));
         assertThat(tracker.findAll()[0].getName(), is("Item name"));
     }
 
@@ -62,6 +65,9 @@ public class StartUITest {
         };
         new StartUI(out).init(in, tracker, actions);
         String name = tracker.findById(item.getId()).getName();
+        assertThat(out.toString(), is(
+                "=== Edit item ===\r\nExit\r\n"
+        ));
         assertThat(name, is(replacedName));
     }
 
@@ -80,6 +86,9 @@ public class StartUITest {
                 new ExitAction(out)
         };
         new StartUI(out).init(in, tracker, actions);
+        assertThat(out.toString(), is(
+                "=== Delete item ====\r\nExit\r\n"
+        ));
         assertThat(tracker.findById(item.getId()), is(nullValue()));
     }
 
