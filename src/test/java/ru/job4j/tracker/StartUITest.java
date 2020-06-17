@@ -34,17 +34,19 @@ public class StartUITest {
     public void whenCreateItem() {
         Output out = new StubOutput();
         Input in = new StubInput(
-                new String[]{"0", "Item name", "1", "Item name", "2"}
+                new String[]{"0", "Item name", "1", "2", "Item name", "3"}
         );
         Tracker tracker = new Tracker();
         UserAction[] actions = {
                 new CreateAction(out),
+                new ShowAllItemsAction(out),
                 new FindByNameAction(out),
                 new ExitAction(out),
         };
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
                 "=== Create a new Item ====" + System.lineSeparator() +
+                        "=== Show all items ====" + System.lineSeparator() +
                         "=== Find items by name ====" + System.lineSeparator() +
                         "Exit" + System.lineSeparator()
         ));
@@ -60,7 +62,7 @@ public class StartUITest {
         /* Входные данные должны содержать ID добавленной заявки item.getId() */
         String replacedName = "New item name";
         Input in = new StubInput(
-                new String[]{"0", item.getId(), replacedName, "1",replacedName,"2"}
+                new String[]{"0", item.getId(), replacedName, "1", replacedName, "2"}
         );
         UserAction[] actions = {
                 new ReplaceAction(out),
@@ -86,7 +88,7 @@ public class StartUITest {
         String id = item.getId();
         /* Входные данные должны содержать ID добавленной заявки item.getId() */
         Input in = new StubInput(
-                new String[]{"0", id, "1",id,"2"}
+                new String[]{"0", id, "1", id, "2"}
         );
         UserAction[] actions = {
                 new DeleteAction(out),
