@@ -23,10 +23,10 @@ public class ShowAllItemsAction implements UserAction {
 
     @Override
     public boolean execute(Input input, Tracker tracker) {
-        out.println("=== Show all items ====");
+        System.out.println("=== Show all items ====");
         Item[] items = tracker.findAll();
         for (int i = 0; i < items.length; i++) {
-            System.out.println(items[i]);
+            out.println(items[i]);
         }
         return true;
     }
