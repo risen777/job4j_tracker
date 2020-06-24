@@ -23,13 +23,12 @@ public class FindEl {
 
     public static int indexOf(String[] values, String key) throws ElementNotFoundException {
         int rsl = -1;
+        for (int i = 0; i < values.length; i++) {
+            if (values[i] == key) {
+                rsl = i;
+            }
 
-        /* for-each */
-        for (String value : values) {
-
-            rsl = Arrays.asList(values).indexOf(key);
         }
-
         return rsl;
     }
 
