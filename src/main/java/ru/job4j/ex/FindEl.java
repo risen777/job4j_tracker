@@ -23,6 +23,7 @@ public class FindEl {
         for (int i = 0; i < values.length; i++) {
             if (values[i] == key) {
                 rsl = i;
+                break;
             }
 
         }
