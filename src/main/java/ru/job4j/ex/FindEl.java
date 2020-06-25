@@ -1,6 +1,5 @@
 package ru.job4j.ex;
 
-import java.util.Arrays;
 
 
 /**
@@ -10,9 +9,7 @@ public class FindEl {
 
     public static void main(String[] args) {
         try {
-            if (indexOf(new String[]{"sss", "dddsss", "kam"}, "dddd") == -1) {
-                throw new ElementNotFoundException("Element not found");
-            }
+            indexOf(new String[]{"sss", "dddsss", "kam"}, "dddd");
         } catch (ElementNotFoundException e) {
             e.printStackTrace();
         }
@@ -28,6 +25,9 @@ public class FindEl {
                 rsl = i;
             }
 
+        }
+        if (rsl == -1) {
+            throw new ElementNotFoundException("Element not found");
         }
         return rsl;
     }
