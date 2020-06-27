@@ -7,21 +7,25 @@ public class UserStore {
 
 
     public static User findUser(User[] users, String login) throws UserNotFoundException {
-
+        User result = null;
         for (int i = 0; i < users.length; i++) {
             if (users[i].getUsername().equals(login)) {
+                result = users[i];
                 break;
-            } else {
+            }
+            if (result == null) {
                 throw new UserNotFoundException("User not found");
             }
-
         }
-        return users[0];
+        return result;
     }
 
     public static boolean validate(User user) throws UserInvalidException {
         if (!user.isValid()) {
             throw new UserInvalidException("User is invalid");
+        }
+        if (user.getUsername().length() < 3) {
+            throw new UserInvalidException("Name of user is small");
         }
         return true;
     }
