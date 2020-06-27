@@ -18,11 +18,6 @@ public class ConsoleInput implements Input {
 
     @Override
     public int askInt(String question) {
-        int i = 1;
-        try {
-             i = Integer.valueOf(askStr(question));
-        } catch (NumberFormatException ex) {
-        }
-        return i;
+        return Integer.valueOf(askStr(question));
     }
 }
