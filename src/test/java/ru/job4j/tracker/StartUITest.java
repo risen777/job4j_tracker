@@ -45,10 +45,10 @@ public class StartUITest {
         };
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
-                tracker.findAll()[0]+ System.lineSeparator() +
+                tracker.findAll()[0] + System.lineSeparator() +
                         "Exit" + System.lineSeparator()
         ));
-    //    assertThat(tracker.findAll()[0].getName(), is("Item name"));
+        //    assertThat(tracker.findAll()[0].getName(), is("Item name"));
     }
 
     @Test
@@ -70,8 +70,8 @@ public class StartUITest {
         new StartUI(out).init(in, tracker, actions);
         String name = tracker.findById(item.getId()).getName();
         assertThat(out.toString(), is(
-                tracker.findAll()[0]+ System.lineSeparator()+
-                        tracker.findAll()[0]+ System.lineSeparator()+
+                tracker.findAll()[0] + System.lineSeparator() +
+                        tracker.findAll()[0] + System.lineSeparator() +
                         "Exit" + System.lineSeparator()
         ));
         assertThat(name, is(replacedName));
@@ -101,5 +101,21 @@ public class StartUITest {
         assertThat(tracker.findById(item.getId()), is(nullValue()));
     }
 
+    @Test
+    public void whenInvalidExit() {
+        Output out = new StubOutput();
+        Input in = new StubInput(
+                new String[]{"1", "0"}
+        );
+        Tracker tracker = new Tracker();
+        UserAction[] actions = {
+                new ExitAction(out)
+        };
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(out.toString(), is(
+                "Wrong input, you can select: 0 .. 0" + System.lineSeparator() +
+                        "Exit" + System.lineSeparator()
 
+        ));
+    }
 }
