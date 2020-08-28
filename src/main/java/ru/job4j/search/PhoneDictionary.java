@@ -23,7 +23,7 @@ public class PhoneDictionary {
         ArrayList<Person> result = new ArrayList<>();
 
         for (Person value : persons) {
-            if (persons.contains(value)) {
+            if (value.getAddress().contains(key) || value.getName().contains(key) || value.getPhone().contains(key) || value.getSurname().contains(key) ) {
                 result = persons;
 
             }
