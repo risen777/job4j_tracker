@@ -1,7 +1,6 @@
 package ru.job4j.search;
 
-import java.util.Collections;
-import java.util.Comparator;
+
 import java.util.LinkedList;
 
 /**
@@ -20,43 +19,18 @@ public class PriorityQueue {
     public void put(Task task) {
         int index = 0;
         for (Task element : tasks) {
-            if (task.getPriority() > element.getPriority()) {
-                this.tasks.remove(element);
-                this.tasks.add(index, task);
-                this.tasks.add(index, element);
+            if (task.getPriority() < element.getPriority()) {
                 break;
             }
-            else if(task.getPriority() < element.getPriority()){
-                this.tasks.add(index, task);
-                break;
-            }
+            index++;
         }
-
-        if (this.tasks.size() == 0) {
-            this.tasks.add(index, task);
-        }
-
-//           else if (task.getPriority() < element.getPriority()) {
-//
-
-
+        this.tasks.add(index, task);
     }
 
 
     public Task take() {
         return tasks.poll();
     }
-//    class TaskComp implements Comparator<Task>{
-//
-//        @Override
-//        public int compare(Task o1, Task o2) {
-//            if(o1.getPriority() > o2.getPriority()){
-//                return 1;
-//            } else {
-//                return -1;
-//            }
-//
-//        }
-//    }
+
 
 }
