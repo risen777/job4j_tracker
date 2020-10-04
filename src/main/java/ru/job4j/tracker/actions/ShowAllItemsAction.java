@@ -5,6 +5,10 @@ import ru.job4j.tracker.Item;
 import ru.job4j.tracker.Output;
 import ru.job4j.tracker.Tracker;
 
+import java.util.List;
+
+
+
 /**
  * Created by Sergey
  */
@@ -24,9 +28,9 @@ public class ShowAllItemsAction implements UserAction {
     @Override
     public boolean execute(Input input, Tracker tracker) {
         System.out.println("=== Show all items ====");
-        Item[] items = tracker.findAll();
-        for (int i = 0; i < items.length; i++) {
-            out.println(items[i]);
+        List<Item> items = tracker.findAll();
+        for (Item item : items) {
+            out.println(items.indexOf(item) + ". Name: " + item.getName() + " id: " + item.getId());
         }
         return true;
     }

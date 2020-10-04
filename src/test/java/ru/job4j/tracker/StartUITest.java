@@ -4,6 +4,8 @@ import org.junit.Test;
 import ru.job4j.tracker.actions.*;
 
 
+import java.util.ArrayList;
+
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
@@ -22,12 +24,12 @@ public class StartUITest {
                 new String[]{"0"}
         );
         Tracker tracker = new Tracker();
-        UserAction[] actions = {
-                new ExitAction(out)
-        };
+        ArrayList<UserAction> actions = new ArrayList<>();
+        actions.add(new ExitAction(out));
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
-                "Exit" + System.lineSeparator()
+                        "0. Exit" + System.lineSeparator() +
+                        "Exit" + System.lineSeparator()
         ));
     }
 
@@ -38,17 +40,12 @@ public class StartUITest {
                 new String[]{"0", "Item name", "1", "Item name", "2"}
         );
         Tracker tracker = new Tracker();
-        UserAction[] actions = {
-                new CreateAction(out),
-                new FindByNameAction(out),
-                new ExitAction(out),
-        };
+        ArrayList<UserAction> actions = new ArrayList<>();
+        actions.add(new CreateAction(out));
+        actions.add(new FindByNameAction(out));
+        actions.add(new ExitAction(out));
         new StartUI(out).init(in, tracker, actions);
-        assertThat(out.toString(), is(
-                tracker.findAll()[0] + System.lineSeparator() +
-                        "Exit" + System.lineSeparator()
-        ));
-        //    assertThat(tracker.findAll()[0].getName(), is("Item name"));
+        assertThat(tracker.findAll().get(0).getName(), is("Item name"));
     }
 
     @Test
@@ -62,19 +59,13 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[]{"0", item.getId(), replacedName, "1", replacedName, "2"}
         );
-        UserAction[] actions = {
-                new ReplaceAction(out),
-                new FindByNameAction(out),
-                new ExitAction(out)
-        };
+        ArrayList<UserAction> actions = new ArrayList<>();
+        actions.add(new ReplaceAction(out));
+        actions.add(new FindByNameAction(out));
+        actions.add(new ExitAction(out));
+
         new StartUI(out).init(in, tracker, actions);
-        String name = tracker.findById(item.getId()).getName();
-        assertThat(out.toString(), is(
-                tracker.findAll()[0] + System.lineSeparator() +
-                        tracker.findAll()[0] + System.lineSeparator() +
-                        "Exit" + System.lineSeparator()
-        ));
-        assertThat(name, is(replacedName));
+        assertThat(tracker.findById(item.getId()).getName(), is(replacedName));
     }
 
     @Test
@@ -88,16 +79,11 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[]{"0", id, "1", "2"}
         );
-        UserAction[] actions = {
-                new DeleteAction(out),
-                new ShowAllItemsAction(out),
-                new ExitAction(out)
-        };
+        ArrayList<UserAction> actions = new ArrayList<>();
+        actions.add(new DeleteAction(out));
+        actions.add(new ShowAllItemsAction(out));
+        actions.add(new ExitAction(out));
         new StartUI(out).init(in, tracker, actions);
-        assertThat(out.toString(), is(
-                "Заявка удалена" + System.lineSeparator() +
-                        "Exit" + System.lineSeparator()
-        ));
         assertThat(tracker.findById(item.getId()), is(nullValue()));
     }
 
@@ -108,13 +94,14 @@ public class StartUITest {
                 new String[]{"1", "0"}
         );
         Tracker tracker = new Tracker();
-        UserAction[] actions = {
-                new ExitAction(out)
-        };
+        ArrayList<UserAction> actions = new ArrayList<>();
+        actions.add(new ExitAction(out));
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
+                "0. Exit" + System.lineSeparator() +
                 "Wrong input, you can select: 0 .. 0" + System.lineSeparator() +
-                        "Exit" + System.lineSeparator()
+                        "0. Exit" + System.lineSeparator() +
+                "Exit" + System.lineSeparator()
 
         ));
     }

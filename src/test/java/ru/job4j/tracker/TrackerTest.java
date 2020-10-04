@@ -3,6 +3,9 @@ package ru.job4j.tracker;
 import org.junit.Test;
 
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
@@ -28,11 +31,9 @@ public class TrackerTest {
         tracker.add(item);
         Item item1 = new Item("test2");
         tracker.add(item1);
-        Item[] items = tracker.findAll();
-        assertThat(items[0].getName(), is(item.getName()));
-        assertThat(items[0].getId(), is(item.getId()));
-        assertThat(items[1].getId(), is(item1.getId()));
-        assertThat(items.length,is(2));
+        List <Item> ex = tracker.findAll();
+        List  <Item> res = Arrays.asList(new Item[]{item, item1});
+        assertThat(ex, is(res));
 
     }
 
@@ -45,13 +46,12 @@ public class TrackerTest {
         tracker.add(item1);
         Item item2 = new Item("test2");
         tracker.add(item2);
-        Item[] items = tracker.findByName("test1");
-        for (int i=0;i<items.length;i++){
-           assertThat(items[i].getName(),is("test1"));
-            assertThat(items.length,is(2));
+        List <Item> ex = tracker.findByName("test2");
+        List <Item> res = Arrays.asList(new Item[]{item2});
+        assertThat(ex, is(res));
         }
 
-    }
+
 
     @Test
     public void whenReplace() {
