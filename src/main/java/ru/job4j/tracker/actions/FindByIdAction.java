@@ -23,7 +23,7 @@ public class FindByIdAction implements UserAction {
     @Override
     public boolean execute(Input input, Tracker tracker) {
         System.out.println("=== Find item by Id ====");
-        String id = input.askStr("Enter id: ");
+        int id = input.askInt("Enter id: ");
         Item item = tracker.findById(id);
         if (item == null) {
             out.println(String.format("Заявка не найдена по id: '%s'", id));

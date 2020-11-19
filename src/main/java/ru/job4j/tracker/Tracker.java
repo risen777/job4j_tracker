@@ -37,9 +37,9 @@ List<Item> items= new ArrayList<>();
      *
      * @return Уникальный ключ.
      */
-    private String generateId() {
+    private int generateId() {
         Random rm = new Random();
-        return String.valueOf(rm.nextLong() + System.currentTimeMillis());
+        return (int) (rm.nextLong() + System.currentTimeMillis());
     }
 
 
@@ -81,11 +81,11 @@ List<Item> items= new ArrayList<>();
      * @param id
      * @param item
      */
-    public boolean replace(String id, Item item) {
+    public boolean replace(int id, Item item) {
         boolean result = false;
         item.setId(id);
                 for (int index = 0; index < items.size(); index++) {
-                    if (items.get(index).getId().equals(id)) {
+                    if (items.get(index).getId()==id) {
                         items.set(index, item);
                         result = true;
                         break;
@@ -100,18 +100,18 @@ List<Item> items= new ArrayList<>();
      * @param id
      * @return найденная item заявка
      */
-    public Item findById(String id) {
+    public Item findById(int id) {
         // Находим индекс
         int index = indexOf(id);
         // Если индекс найден возвращаем item, иначе null
         return index != -1 ? items.get(index) : null;
     }
 
-    private int indexOf(String id) {
+    private int indexOf(int id) {
         int rez = -1;
         int index = 0;
         for (Item item : items) {
-            if (item.getId().equals(id)) {
+            if (item.getId() == id) {
                 rez = index;
                 break;
             }
@@ -125,7 +125,7 @@ List<Item> items= new ArrayList<>();
      *
      * @param id
      */
-    public boolean delete(String id) {
+    public boolean delete(int id) {
         int index = indexOf(id);
         boolean rsl = false;
         if (index != -1) {
